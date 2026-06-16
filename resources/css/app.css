@@ -1,0 +1,7 @@
+/* Mengubah background navbar dengan kelas fi-sidebar-nav menjadi putih */
+nav .fi-sidebar-nav {
+    background-color: white !important;  /* Mengubah background navbar menjadi putih */
+    position: relative !important;       /* Menambahkan posisi relative */
+    z-index: 1000 !important;           /* Menambahkan z-index agar navbar lebih tinggi dari elemen lainnya */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1) !important;  /* Menambahkan shadow pada navbar */
+}
