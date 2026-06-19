@@ -30,6 +30,9 @@ class UserPanelProvider extends PanelProvider
             ->path('user')
             ->login()
             ->registration()
+            ->brandName('PT. ATTAQI BERKAH UTAMA')
+            ->brandLogo(asset('images/logo.png'))
+            ->brandLogoHeight('2.5rem')
             ->renderHook(
                 PanelsRenderHook::USER_MENU_BEFORE,
                 fn (): string => auth()->check() ? Blade::render("

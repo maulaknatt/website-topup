@@ -26,13 +26,15 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login()->brandName('PT. DIGITAL KOMUNIKASI NUSANTARA')
+            ->login()->brandName('PT. ATTAQI BERKAH UTAMA')
+            ->brandLogo(asset('images/logo.png'))
+            ->brandLogoHeight('2.5rem')
             ->colors([
-                'primary' => '#3b82f6', // biru lembut (Tailwind blue-500)
-                'gray' => '#6b7280',    // abu (Tailwind gray-500)
-                'danger' => '#ef4444',  // merah lembut
-                'success' => '#10b981', // hijau lembut
-                'warning' => '#f59e0b', // kuning lembut
+                'primary' => Color::Amber,
+                'gray'    => Color::Stone,
+                'danger'  => Color::Rose,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])->sidebarWidth('18rem')
             ->navigationGroups([
                 'Katalog',

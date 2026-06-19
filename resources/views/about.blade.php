@@ -1,299 +1,645 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PT Digital Komunikasi Nusantara</title>
-    <!--
-        For more customization options, we would advise
-        you to build your TailwindCSS from the source.
-        https://tailwindcss.com/docs/installation
-    -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.2/tailwind.min.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=bolt" />
-    <!-- Small CSS to Hide elements at 1520px size -->
+    <title>PT. ATTAQI BERKAH UTAMA — Portal Transaksi Digital</title>
+    <meta name="description" content="Kelola transaksi dan pembayaran bisnis Anda dengan cepat, aman, dan tanpa repot bersama PT. ATTAQI BERKAH UTAMA.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        @media(max-width:1520px) {
-            .left-svg {
-                display: none;
-            }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --gold:       #C8963E;
+            --gold-light: #E8B860;
+            --gold-dark:  #9C6E28;
+            --gold-pale:  #FDF6E7;
+            --white:      #FFFFFF;
+            --off-white:  #FAFAF8;
+            --gray-50:    #F9F9F7;
+            --gray-100:   #F2F0EB;
+            --gray-300:   #D1CCC0;
+            --gray-500:   #8A8478;
+            --gray-700:   #4A4540;
+            --gray-900:   #1C1A17;
+            --shadow-sm:  0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.05);
+            --shadow-md:  0 4px 16px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.05);
+            --shadow-lg:  0 12px 40px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.06);
+            --shadow-gold:0 8px 32px rgba(200,150,62,.25);
         }
 
-        /* small css for the mobile nav close */
-        #nav-mobile-btn.close span:first-child {
-            transform: rotate(45deg);
-            top: 4px;
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--off-white);
+            color: var(--gray-900);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ── NAVBAR ─────────────────────────────────────────── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-100);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-brand img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-brand-text {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.25;
+            letter-spacing: -.2px;
+        }
+
+        .nav-brand-sub {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        nav { display: flex; align-items: center; gap: 6px; }
+
+        nav a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-700);
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: color .2s, background .2s;
+        }
+
+        nav a:hover { color: var(--gold-dark); background: var(--gold-pale); }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #fff !important;
+            font-weight: 600 !important;
+            padding: 9px 20px !important;
+            border-radius: 10px !important;
+            box-shadow: var(--shadow-gold);
+            transition: transform .2s, box-shadow .2s !important;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold)) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 36px rgba(200,150,62,.35) !important;
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--gold) !important;
+            color: var(--gold-dark) !important;
+            background: transparent !important;
+        }
+
+        .btn-outline:hover { background: var(--gold-pale) !important; }
+
+        /* ── HERO ───────────────────────────────────────────── */
+        .hero {
+            background: linear-gradient(150deg, #fff 0%, #FDF8EE 50%, #FFF8E8 100%);
+            padding: 96px 24px 80px;
+            text-align: center;
             position: relative;
-            background: #a0aec0;
+            overflow: hidden;
         }
 
-        #nav-mobile-btn.close span:nth-child(2) {
-            transform: rotate(-45deg);
-            margin-top: 0px;
-            background: #a0aec0;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -120px; left: 50%;
+            transform: translateX(-50%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(200,150,62,.10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--gold-pale);
+            border: 1px solid rgba(200,150,62,.3);
+            color: var(--gold-dark);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.12;
+            color: var(--gray-900);
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: var(--gray-500);
+            max-width: 520px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .cta-btn-main {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #fff;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .cta-btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(200,150,62,.4);
+        }
+
+        .cta-btn-ghost {
+            background: #fff;
+            color: var(--gray-700);
+            border: 1.5px solid var(--gray-300);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cta-btn-ghost:hover {
+            border-color: var(--gold);
+            color: var(--gold-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ── LAYANAN ────────────────────────────────────────── */
+        #layanan {
+            padding: 80px 24px;
+            background: var(--white);
+        }
+
+        .section-label {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto 52px;
+        }
+
+        .logo-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) { .logo-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .logo-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color .2s, box-shadow .2s, transform .2s;
+        }
+
+        .logo-card:hover {
+            border-color: var(--gold-light);
+            box-shadow: 0 8px 24px rgba(200,150,62,.12);
+            transform: translateY(-2px);
+        }
+
+        .logo-card img {
+            height: 72px;
+            object-fit: contain;
+            filter: grayscale(20%);
+            transition: filter .2s;
+        }
+
+        .logo-card:hover img { filter: grayscale(0%); }
+
+        /* ── FEATURES ───────────────────────────────────────── */
+        .features {
+            padding: 80px 24px;
+            background: var(--gray-50);
+        }
+
+        .features-grid {
+            max-width: 960px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: 18px;
+            padding: 28px 24px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow .2s, transform .2s;
+        }
+
+        .feature-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--gold-pale), #FFF0CC);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .feature-card p { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
+
+        /* ── KONTAK ─────────────────────────────────────────── */
+        #contacts {
+            padding: 80px 24px;
+            background: var(--white);
+        }
+
+        .contact-grid {
+            max-width: 960px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; } }
+
+        .contact-info { display: flex; flex-direction: column; gap: 20px; }
+
+        .contact-item { display: flex; gap: 14px; align-items: flex-start; }
+
+        .contact-item-icon {
+            width: 40px; height: 40px; flex-shrink: 0;
+            background: var(--gold-pale);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+        }
+
+        .contact-item-text h4 { font-size: 13px; font-weight: 600; color: var(--gray-500); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .5px; }
+        .contact-item-text a, .contact-item-text p { font-size: 15px; color: var(--gray-900); text-decoration: none; line-height: 1.5; }
+        .contact-item-text a:hover { color: var(--gold-dark); }
+
+        .contact-map iframe {
+            width: 100%; height: 280px;
+            border-radius: 16px;
+            border: 1px solid var(--gray-100);
+        }
+
+        .contact-map a {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--gold-dark);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact-map a:hover { text-decoration: underline; }
+
+        /* ── FOOTER ─────────────────────────────────────────── */
+        footer {
+            background: var(--gray-900);
+            color: #fff;
+            padding: 48px 24px 28px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+
+        .footer-brand { display: flex; align-items: center; gap: 10px; }
+        .footer-brand img { height: 36px; width: auto; filter: brightness(0) invert(1); opacity: .9; }
+        .footer-brand-name { font-size: 14px; font-weight: 700; color: #fff; line-height: 1.3; }
+        .footer-brand-sub { font-size: 11px; color: var(--gold-light); letter-spacing: .5px; }
+
+        .footer-links { display: flex; gap: 40px; flex-wrap: wrap; }
+        .footer-col h5 { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-col a { font-size: 14px; color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
+        .footer-col a:hover { color: var(--gold-light); }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 28px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,.08);
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255,255,255,.4);
+        }
+
+        /* ── MOBILE NAV ─────────────────────────────────────── */
+        .hamburger { display: none; cursor: pointer; padding: 8px; border: none; background: none; }
+        .hamburger span { display: block; width: 22px; height: 2px; background: var(--gray-700); border-radius: 2px; transition: .2s; margin: 5px 0; }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            nav { display: none; position: absolute; top: 68px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--gray-100); flex-direction: column; align-items: stretch; padding: 12px 16px 16px; box-shadow: var(--shadow-md); }
+            nav.open { display: flex; }
+            nav a { padding: 12px 14px; }
         }
     </style>
 </head>
 
-<body class="overflow-x-hidden antialiased">
-    <!-- Header Section -->
-    <header class="relative z-50 w-full h-24">
-        <div
-            class="container flex items-center justify-center h-full max-w-6xl px-8 mx-auto sm:justify-between xl:px-0">
+<body>
 
-            <a href="/" class="relative flex items-center inline-block h-5 h-full font-black leading-none">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-auto h-6">
-                <span class="ml-3 text-xl text-gray-800 font-serif">Pt Digital Komunikasi Nusantara</span>
-
+    <!-- ── HEADER ──────────────────────────────────────────── -->
+    <header>
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">
+                <img src="{{ asset('images/logo.png') }}" alt="PT. ATTAQI BERKAH UTAMA Logo">
+                <div>
+                    <div class="nav-brand-text">PT. ATTAQI BERKAH UTAMA</div>
+                    <div class="nav-brand-sub">Portal Transaksi Digital</div>
+                </div>
             </a>
 
-            <nav id="nav"
-                class="absolute top-0 left-0 z-50 flex flex-col items-center justify-between hidden w-full h-64 pt-5 mt-24 text-sm text-gray-800 bg-white border-t border-gray-200 md:w-auto md:flex-row md:h-24 lg:text-base md:bg-transparent md:mt-0 md:border-none md:py-0 md:flex md:relative">
-                <a href="#"
-                    class="ml-0 mr-0 font-bold duration-100 md:ml-12 md:mr-3 lg:mr-8 transition-color hover:text-indigo-600">Beranda</a>
+            <button class="hamburger" id="nav-mobile-btn" aria-label="Menu">
+                <span></span><span></span>
+            </button>
 
-                <a href="#layanan" class="font-bold duration-100 transition-color hover:text-indigo-600">Layanan
-                    Kami</a>
-                <a href="#contacts"
-                    class="ml-0 font-bold duration-100 md:ml-3 lg:ml-8 transition-color hover:text-indigo-600">Hubungi
-                    Kami</a>
-                <a href="/user/login"
-                    class="ml-0 font-bold duration-100 md:ml-3 lg:ml-8 transition-color text-indigo-600 hover:text-indigo-800">Login User</a>
-                <a href="/admin/login"
-                    class="ml-0 font-bold duration-100 md:ml-3 lg:ml-8 transition-color text-gray-600 hover:text-gray-800">Login Admin</a>
-
+            <nav id="nav">
+                <a href="#">Beranda</a>
+                <a href="#layanan">Layanan</a>
+                <a href="#contacts">Kontak</a>
+                <a href="/user/login" class="btn-outline cta-btn" style="padding:9px 18px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;border:1.5px solid var(--gold);color:var(--gold-dark);">Masuk</a>
+                <a href="/user/register" class="btn-primary" style="padding:9px 18px;border-radius:10px;font-size:14px;text-decoration:none;">Daftar</a>
             </nav>
-
-
-
-            <div id="nav-mobile-btn"
-                class="absolute top-0 right-0 z-50 block w-6 mt-8 mr-10 cursor-pointer select-none md:hidden sm:mt-10">
-                <span class="block w-full h-1 mt-2 duration-200 transform bg-gray-800 rounded-full sm:mt-1"></span>
-                <span class="block w-full h-1 mt-1 duration-200 transform bg-gray-800 rounded-full"></span>
-            </div>
-
         </div>
     </header>
-    <!-- End Header Section-->
 
-    <!-- BEGIN HERO SECTION -->
-    <div
-        class="relative items-center justify-center w-full overflow-x-hidden lg:pt-40 lg:pb-20 xl:pt-40 xl:pb-64 bg-blue-600">
-        <div
-            class="container flex flex-col items-center justify-between h-full max-w-6xl px-8 mx-auto -mt-32 lg:flex-row xl:px-0">
-            <div
-                class="z-30 flex flex-col items-center w-full max-w-xl pt-48 text-center lg:items-start lg:w-1/2 lg:pt-20 xl:pt-40 lg:text-left">
-                <h1 class="relative mb-4 text-3xl font-black leading-tight text-white sm:text-6xl xl:mb-8">
-                    PT. Digital Komunikasi Nusantara
-                </h1>
-                <p class="pr-0 mb-8 text-base text-white sm:text-lg xl:text-xl lg:pr-20">
-                    Kelola transaksi dan pembayaran bisnis Anda dengan cepat, aman, dan tanpa repot. Solusi payment
-                    gateway terpercaya untuk semua kebutuhan Anda.
-                </p>
-                <div class="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                    <a href="/user/login"
-                        class="relative inline-block w-auto px-8 py-4 text-base font-bold text-center text-white bg-green-600 border-t border-gray-200 rounded-md shadow-xl fold-bold">
-                        Masuk Ke Portal User
-                    </a>
-                    <a href="/user/register"
-                        class="relative inline-block w-auto px-8 py-4 text-base font-bold text-center text-white bg-indigo-700 border-t border-gray-200 rounded-md shadow-xl fold-bold">
-                        Daftar Akun Baru
-                    </a>
-                </div>
-
-                <svg class="absolute left-0 max-w-md mt-24 -ml-64 left-svg" viewBox="0 0 423 423"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <defs>
-                        <linearGradient x1="100%" y1="0%" x2="4.48%" y2="0%"
-                            id="linearGradient-1">
-                            <stop stop-color="#5C54DB" offset="0%" />
-                            <stop stop-color="#6A82E7" offset="100%" />
-                        </linearGradient>
-                        <filter x="-9.3%" y="-6.7%" width="118.7%" height="118.7%" filterUnits="objectBoundingBox"
-                            id="filter-3">
-                            <feOffset dy="8" in="SourceAlpha" result="shadowOffsetOuter1" />
-                            <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1" />
-                            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" in="shadowBlurOuter1" />
-                        </filter>
-                        <rect id="path-2" x="63" y="504" width="300" height="300" rx="40" />
-                    </defs>
-                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity=".9">
-                        <g id="Desktop-HD" transform="translate(-39 -531)">
-                            <g id="Hero" transform="translate(43 83)">
-                                <g id="Rectangle-6" transform="rotate(45 213 654)">
-                                    <use fill="#000" filter="url(#filter-3)" xlink:href="#path-2" />
-                                    <use fill="url(#linearGradient-1)" xlink:href="#path-2" />
-                                </g>
-                            </g>
-                        </g>
-                    </g>
-                </svg>
-            </div>
-            <div class="relative z-50 flex flex-col items-end justify-center w-full h-full lg:w-1/2 ms:pl-10">
-                <div class="container relative left-0 w-full max-w-4xl lg:absolute xl:max-w-6xl lg:w-screen">
-                    <img src="{{ asset('images/pay.png') }}"
-                        class="w-full h-auto mt-20 mb-20 ml-0 lg:mt-24 xl:mt-40 lg:mb-0 lg:h-full lg:-ml-12">
-                </div>
-            </div>
+    <!-- ── HERO ────────────────────────────────────────────── -->
+    <section class="hero">
+        <div class="hero-badge">✦ Sistem Pembayaran Digital Terpercaya</div>
+        <h1>Solusi Transaksi Digital<br>untuk <span>PT. ATTAQI<br>BERKAH UTAMA</span></h1>
+        <p>Kelola transaksi, topup saldo, dan pembayaran bisnis Anda dengan cepat, aman, dan tanpa repot — semua dalam satu portal.</p>
+        <div class="hero-cta">
+            <a href="/user/login" class="cta-btn cta-btn-main">
+                <span>⚡</span> Masuk ke Portal
+            </a>
+            <a href="/user/register" class="cta-btn cta-btn-ghost">
+                Daftar Akun Baru →
+            </a>
         </div>
-    </div>
+    </section>
 
-    <!-- HERO SECTION END -->
+    <!-- ── KEUNGGULAN ───────────────────────────────────────── -->
+    <section class="features">
+        <p class="section-label">Mengapa Kami</p>
+        <h2 class="section-title">Fitur Unggulan</h2>
+        <p class="section-sub">Platform kami dirancang untuk kemudahan transaksi bisnis modern.</p>
 
-
-
-
-
-    <!-- Start Testimonials -->
-    <div id="layanan"
-        class="flex items-center justify-center w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
-        <div class="max-w-6xl mx-auto k">
-            <div class="flex-col items-center ">
-                <div class="flex flex-col items-center justify-center w-full h-full max-w-6xl px-8 mx-auto text-center">
-                    <p class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">
-                        Apa yang Kami Tawarkan
-                    </p>
-                    <h2
-                        class="text-4xl font-extrabold leading-10 tracking-tight text-gray-900 sm:text-5xl sm:leading-none md:text-6xl lg:text-5xl xl:text-6xl">
-                        Layanan Kami
-                    </h2>
-                    <p class="my-6 text-xl font-medium text-gray-500">
-                        Kami menyediakan solusi pembayaran digital yang aman, cepat, dan mudah digunakan untuk kebutuhan
-                        pribadi maupun bisnis.
-                    </p>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6 mt-8 items-center  w-full">
-
-                        <div class=""><img class="h-40 object-contain mx-auto"
-                                src="{{ asset('images/indosat.jpg') }}" alt="Indosat"></div>
-                        <div><img class="h-40 object-contain mx-auto" src="{{ asset('images/telkomsel.jpg') }}"
-                                alt="Telkomsel"></div>
-                        <div><img class="h-40 object-contain mx-auto" src="{{ asset('images/xl.jpg') }}"
-                                alt="XL Axiata"></div>
-                        <div><img class="h-40 object-contain mx-auto" src="{{ asset('images/bank.jpg') }}"
-                                alt="Axis"></div>
-                        <div><img class="h-40 object-contain mx-auto" src="{{ asset('images/tri.jpg') }}"
-                                alt="Tri"></div>
-                        <div><img class="h-40 object-contain mx-auto" src="{{ asset('images/smartfren.jpg') }}"
-                                alt="Smartfren"></div>
-                    </div>
-                </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3>Topup Saldo Mudah</h3>
+                <p>Isi saldo dengan berbagai metode pembayaran populer secara instan dan aman.</p>
             </div>
-        </div>
-    </div>
-    <section id="layanan" class="w-full border-t border-gray-200 px-6 py-12 md:py-16 lg:py-24 xl:py-32">
-        <div class="max-w-6xl mx-auto text-center ">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 ">Hubungi Kami</h2>
-            <p class="mt-4 text-lg sm:text-xl text-gray-500 font-medium">
-                Kami siap membantu Anda. Jangan ragu untuk menghubungi tim kami untuk informasi lebih lanjut,
-                kerja sama bisnis, atau bantuan teknis.
-            </p>
-
-            <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 text-left text-gray-700 text-lg">
-                <!-- Kontak Info -->
-                <div class="space-y-5">
-                    <div>
-                        <span class="font-semibold">Telepon / WhatsApp:</span><br>
-                        <a href="https://wa.me/6281210627762" class="text-indigo-600 hover:underline">
-                            📞 +62 812-1062-7762
-                        </a>
-                    </div>
-                    <div>
-                        <span class="font-semibold">Alamat:</span><br>
-                        <p>Jalan Salvia Blok Ub No. 15, RT.1/RW.6, Rw Buntu, Rawabuntu, Serpong, Kota Tangerang Selatan,
-                            Banten</p>
-                    </div>
-                    <div>
-                        <span class="font-semibold">Email:</span><br>
-                        <a href="mailto:info@digitalnusantara.co.id" class="text-indigo-600 hover:underline">
-                            ✉️ info@digitalnusantara.co.id
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Google Maps -->
-                <div class="space-y-4" id="contacts">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.280035801262!2d106.67633857498624!3d-6.303602561710993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fbe1265e9c99%3A0x8a06c27f25ccf878!2sJalan%20Salvia%20Blok%20Ub%20No.%2015%2C%20RT.1%2FRW.6%2C%20Rw%20Buntu%2C%20Rawabuntu%2C%20SERPONG%2C%20KOTA%20TANGERANG%20SELATAN%2C%20BANTEN!5e0!3m2!1sen!2sid!4v1717685148907!5m2!1sen!2sid"
-                        width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <a href="https://www.google.com/maps/place/6%C2%B018'13.0%22S+106%C2%B040'44.1%22E"
-                        target="_blank" class="text-indigo-600 hover:underline">
-                        📍 Lihat di Google Maps
-                    </a>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">📦</div>
+                <h3>Katalog Produk Lengkap</h3>
+                <p>Beli produk & layanan langsung dari portal dengan potong saldo otomatis.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Riwayat Transaksi</h3>
+                <p>Pantau seluruh riwayat transaksi Anda secara real-time dan transparan.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Keamanan Terjamin</h3>
+                <p>Sistem proteksi berlapis memastikan data dan transaksi Anda selalu aman.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Proses Cepat</h3>
+                <p>Transaksi diproses dalam hitungan detik, tanpa antrian dan tanpa kerumitan.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Layanan Pelanggan</h3>
+                <p>Tim kami siap membantu Anda kapan saja melalui WhatsApp dan email.</p>
             </div>
         </div>
     </section>
 
+    <!-- ── LAYANAN ───────────────────────────────────────────── -->
+    <section id="layanan" style="padding:80px 24px; background:#fff;">
+        <p class="section-label">Jaringan Kami</p>
+        <h2 class="section-title">Operator yang Didukung</h2>
+        <p class="section-sub">Mendukung berbagai operator dan layanan keuangan terkemuka di Indonesia.</p>
 
-    <footer class="px-4  pt-12 pb-8 text-white bg-blue-600 border-t border-gray-200">
-        <div class="container flex flex-col justify-between max-w-6xl px-4 mx-auto overflow-hidden lg:flex-row">
-            <div class="w-full pl-12 mr-4 text-left lg:w-1/4 sm:text-center sm:pl-0 lg:text-left ">
-                <a href="/" class="relative flex items-center inline-block h-5 h-full font-black leading-none">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-auto h-6">
-                    <span class="ml-3 text-xl text-white font-serif">Pt Digital Komunikasi Nusantara</span>
+        <div class="logo-grid">
+            <div class="logo-card"><img src="{{ asset('images/indosat.jpg') }}" alt="Indosat"></div>
+            <div class="logo-card"><img src="{{ asset('images/telkomsel.jpg') }}" alt="Telkomsel"></div>
+            <div class="logo-card"><img src="{{ asset('images/xl.jpg') }}" alt="XL Axiata"></div>
+            <div class="logo-card"><img src="{{ asset('images/bank.jpg') }}" alt="Bank"></div>
+            <div class="logo-card"><img src="{{ asset('images/tri.jpg') }}" alt="Tri"></div>
+            <div class="logo-card"><img src="{{ asset('images/smartfren.jpg') }}" alt="Smartfren"></div>
+        </div>
+    </section>
 
+    <!-- ── KONTAK ───────────────────────────────────────────── -->
+    <section id="contacts" style="padding:80px 24px; background:var(--gray-50);">
+        <p class="section-label">Hubungi Kami</p>
+        <h2 class="section-title">Ada Pertanyaan?</h2>
+        <p class="section-sub">Kami siap membantu untuk informasi lebih lanjut, kerja sama, atau bantuan teknis.</p>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-item-icon">📞</div>
+                    <div class="contact-item-text">
+                        <h4>Telepon / WhatsApp</h4>
+                        <a href="https://wa.me/6281210627762">+62 812-1062-7762</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">✉️</div>
+                    <div class="contact-item-text">
+                        <h4>Email</h4>
+                        <a href="mailto:info@attaqiberkahutama.co.id">info@attaqiberkahutama.co.id</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <div class="contact-item-text">
+                        <h4>Alamat</h4>
+                        <p>Jalan Salvia Blok Ub No. 15, RT.1/RW.6, Rw Buntu, Rawabuntu, Serpong, Kota Tangerang Selatan, Banten</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.280035801262!2d106.67633857498624!3d-6.303602561710993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fbe1265e9c99%3A0x8a06c27f25ccf878!2sJalan%20Salvia%20Blok%20Ub%20No.%2015%2C%20RT.1%2FRW.6%2C%20Rw%20Buntu%2C%20Rawabuntu%2C%20SERPONG%2C%20KOTA%20TANGERANG%20SELATAN%2C%20BANTEN!5e0!3m2!1sen!2sid!4v1717685148907!5m2!1sen!2sid"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <a href="https://www.google.com/maps/place/6%C2%B018'13.0%22S+106%C2%B040'44.1%22E" target="_blank">
+                    📍 Lihat di Google Maps
                 </a>
-
-            </div>
-            <div class="block w-full pl-10 mt-6 text-sm lg:w-3/4 sm:flex lg:mt-0">
-                <ul class="flex flex-col w-full p-0 font-medium text-left text-white list-none">
-                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-white uppercase md:mt-0">
-                        Product</li>
-                    <li><a href="#"
-                            class="inline-block px-3 py-2 text-white no-underline hover:text-gray-600">Beranda</a>
-                    </li>
-                    <li><a href="#layanan"
-                            class="inline-block px-3 py-2 text-white no-underline hover:text-gray-600">Layanan
-                            Kami</a>
-                    </li>
-                    <li><a href="#contacts"
-                            class="inline-block px-3 py-2 text-white no-underline hover:text-gray-600">Hubungi
-                            Kami</a>
-                    </li>
-
-                </ul>
-
-                <ul class="flex flex-col w-full p-0 font-medium text-left text-gray-700 list-none">
-                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-white uppercase md:mt-0">
-                        Hubungi Kami
-                    </li>
-                    <li><a href="https://wa.me/6281210627762"
-                            class="inline-block px-3 py-2 text-white no-underline hover:text-gray-600">Telephone:
-                            +62 812-1062-7762</a></li>
-                    <li><a href="https://www.google.com/maps/place/6%C2%B018'13.0%22S+106%C2%B040'44.1%22E/@-6.3036026,106.6763386,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-6.3036026!4d106.6789135?entry=ttu&g_ep=EgoyMDI1MDYwMy4wIKXMDSoASAFQAw%3D%3D"
-                            class="inline-block px-3 py-2 text-white no-underline hover:text-gray-600">Alamat: Jalan
-                            Salvia Blok Ub No. 15, RT.1/RW.6, Rw Buntu, Rawabuntu, SERPONG, KOTA
-                            TANGERANG SELATAN, BANTEN</a></li>
-
-
-                </ul>
-
             </div>
         </div>
-        <div class="pt-4  mt-10 text-center text-white border-t border-gray-100">© fadly al shaky 2025
+    </section>
+
+    <!-- ── FOOTER ───────────────────────────────────────────── -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                <div>
+                    <div class="footer-brand-name">PT. ATTAQI BERKAH UTAMA</div>
+                    <div class="footer-brand-sub">Portal Transaksi Digital</div>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h5>Navigasi</h5>
+                    <ul>
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#layanan">Layanan</a></li>
+                        <li><a href="#contacts">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Akun</h5>
+                    <ul>
+                        <li><a href="/user/login">Login User</a></li>
+                        <li><a href="/user/register">Daftar</a></li>
+                        <li><a href="/admin/login">Login Admin</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-
+        <div class="footer-bottom">© 2025 PT. ATTAQI BERKAH UTAMA — Hak cipta dilindungi.</div>
     </footer>
 
-    <!-- a little JS for the mobile nav button -->
+    <!-- ── MOBILE NAV JS ─────────────────────────────────────── -->
     <script>
-        if (document.getElementById('nav-mobile-btn')) {
-            document.getElementById('nav-mobile-btn').addEventListener('click', function() {
-                if (this.classList.contains('close')) {
-                    document.getElementById('nav').classList.add('hidden');
-                    this.classList.remove('close');
+        const btn = document.getElementById('nav-mobile-btn');
+        const nav = document.getElementById('nav');
+        if (btn && nav) {
+            btn.addEventListener('click', function () {
+                nav.classList.toggle('open');
+                const spans = btn.querySelectorAll('span');
+                if (nav.classList.contains('open')) {
+                    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    spans[1].style.transform = 'rotate(-45deg) translate(5px, -5px)';
                 } else {
-                    document.getElementById('nav').classList.remove('hidden');
-                    this.classList.add('close');
+                    spans[0].style.transform = '';
+                    spans[1].style.transform = '';
                 }
             });
         }
     </script>
-</body>
 
+</body>
 </html>
