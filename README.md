@@ -338,6 +338,28 @@ php artisan migrate
 
 ---
 
+## 📸 Tampilan Website
+
+### 🏠 Halaman Utama (Landing Page)
+![Landing Page](public/images/ss_landing.png)
+
+---
+
+### 🔐 Login User
+![Login User](public/images/ss_user_login.png)
+
+---
+
+### 📝 Registrasi Akun
+![Register](public/images/ss_register.png)
+
+---
+
+### 🔑 Login Admin
+![Login Admin](public/images/ss_admin_login.png)
+
+---
+
 ## 📄 Lisensi
 
 © 2025 **PT. ATTAQI BERKAH UTAMA** — Hak cipta dilindungi. Dibuat untuk keperluan internal perusahaan.
